@@ -207,6 +207,7 @@ const loginTab = () => {
       let form = document.createElement("form");
       form.setAttribute("class","form-floating mb-3 login-form");
       form.method = "POST";
+      form.action = "script.php";
       div.appendChild(form);
 
       let divMail = document.createElement("div");
