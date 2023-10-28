@@ -122,46 +122,46 @@ formContact.method = "POST";
 formContact.action = "script.php";
 divContact.appendChild(formContact);
 
-let divMail = document.createElement('div'); //;
-divMail.setAttribute('class', 'mb-4 form-floating'); //;
+let divMail = document.createElement('div'); 
+divMail.setAttribute('class', 'mb-4 form-floating');
 
-let inputMail = document.createElement('input'); //;
-inputMail.type = 'email'; //;
+let inputMail = document.createElement('input'); 
+inputMail.type = 'email'; 
 inputMail.name = 'contactEmail';
-inputMail.setAttribute('class', 'form-control'); //;
-inputMail.setAttribute('id', 'emailInput'); //;
-inputMail.placeholder = 'name@example.com'; //;
+inputMail.setAttribute('class', 'form-control'); 
+inputMail.setAttribute('id', 'emailInput'); 
+inputMail.placeholder = 'name@example.com'; 
 
-let labelMail = document.createElement('label'); //;
-labelMail.setAttribute('for', 'emailInput'); //;
-labelMail.innerText = 'Email address';  //;
+let labelMail = document.createElement('label'); 
+labelMail.setAttribute('for', 'emailInput'); 
+labelMail.innerText = 'Email address';  
 
-divMail.appendChild(inputMail); //;
-divMail.appendChild(labelMail); //;
+divMail.appendChild(inputMail); 
+divMail.appendChild(labelMail); 
 
-let divTextArea = document.createElement('div'); //;
-divTextArea.setAttribute('class', 'mb-4 form-floating'); //;
+let divTextArea = document.createElement('div'); 
+divTextArea.setAttribute('class', 'mb-4 form-floating'); 
 
-let textArea = document.createElement('textarea'); //;
-textArea.setAttribute('class', 'form-control'); //;
-textArea.setAttribute('id', 'textAreaInput'); //;
-textArea.setAttribute('rows', '3'); //;
+let textArea = document.createElement('textarea'); 
+textArea.setAttribute('class', 'form-control'); 
+textArea.setAttribute('id', 'textAreaInput'); 
+textArea.setAttribute('rows', '3'); 
 textArea.name = "contactTextArea";
 
 textArea.setAttribute("oninput","checkContactForm()");
 inputMail.setAttribute("oninput","checkContactForm()");
 
-let labelTextArea = document.createElement('label'); //;
-labelTextArea.setAttribute('for', 'textAreaInput'); //;
-labelTextArea.innerText = 'Your Message'; //;
+let labelTextArea = document.createElement('label'); 
+labelTextArea.setAttribute('for', 'textAreaInput'); 
+labelTextArea.innerText = 'Your Message';
 
-divTextArea.appendChild(textArea); //;
-divTextArea.appendChild(labelTextArea); //;
-let sendButton = document.createElement('input'); //;
-sendButton.type ="submit"; //;
-sendButton.value = "Send Messages"; //;
-sendButton.setAttribute('class', 'btn btn-primary'); //;
-sendButton.setAttribute('id', 'contactSubmit'); //;
+divTextArea.appendChild(textArea);
+divTextArea.appendChild(labelTextArea); 
+let sendButton = document.createElement('input'); 
+sendButton.type ="submit"; 
+sendButton.value = "Send Messages"; 
+sendButton.setAttribute('class', 'btn btn-primary'); 
+sendButton.setAttribute('id', 'contactSubmit'); 
 sendButton.disabled = true;
 
 
@@ -253,7 +253,7 @@ const loginTab = () => {
 
       let captchaDiv = document.createElement("div");
       captchaDiv.setAttribute("class","form-floating mb-3 captcha-div");
-      form.appendChild(captchaDiv);
+      //form.appendChild(captchaDiv);
 
       let divButtons = document.createElement("div");
       divButtons.setAttribute("class","form-floating mb-3 buttons-login");
@@ -269,7 +269,7 @@ const loginTab = () => {
       
 
       //wywolanie funkcji logowania ->
-      //Sprawdzić czy pola nie są puste i czy captcha jest wypelniona
+      //Sprawdzić czy pola nie są puste 
       //wtedy puscic dalej
       //jeżeli nie to wyświetlić komunikat pod spodem przycisków,
       //Sprawdzić czy nie ma cudzyslowiow itp zadnych znakow specjalnych

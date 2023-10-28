@@ -15,12 +15,17 @@ if(isset($_POST["contactEmail"]) && $_POST["contactTextArea"]){
     
         $sql = "INSERT INTO `messages` (`Id_wiadomosci`, `email_nadawcy`, `tresc`, `data_utworzenia`, `czy_wyswietlono`) VALUES (NULL, '$mail', '$content', current_timestamp(), '0')";
         if ($conn->query($sql) === TRUE) {
-            
+            //alert o pomyślnym wysłaniu wiadomości
         } 
         else {
             echo "Error: " . $sql . "<br>" . $conn->error;
+            ////alert o nieudanej próbie
         }
 }
+
+
+
+
 
 
 $_POST = array();
