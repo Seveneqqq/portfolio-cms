@@ -220,6 +220,8 @@ const loginTab = () => {
       mailInput.setAttribute("id","floatingMail");
       mailInput.placeholder = "name@example.com";
       mailInput.name = "mail-login";
+      mailInput.required = true;
+      mailInput.setAttribute("oninput","checkLoginForm()");
 
       let mailLabel = document.createElement("label");
       mailLabel.setAttribute("for","floatingMail");
@@ -239,6 +241,8 @@ const loginTab = () => {
       passwordInput.setAttribute("id","floatingPassword");
       passwordInput.placeholder = "password";
       passwordInput.name = "password-login";
+      passwordInput.required = true;
+      passwordInput.setAttribute("oninput","checkLoginForm()");
       
       let passwordLabel = document.createElement("label");
       passwordLabel.setAttribute("for","floatingPassword");
@@ -251,6 +255,8 @@ const loginTab = () => {
       submitButton.type ="submit";
       submitButton.setAttribute('class', 'btn btn-primary w-50 login-btns sbmt');
       submitButton.value = 'Log in';
+      submitButton.setAttribute('id','submitLogin');
+      submitButton.disabled = true;
 
       let captchaDiv = document.createElement("div");
       captchaDiv.setAttribute("class","form-floating mb-3 captcha-div");
@@ -283,16 +289,143 @@ const loginTab = () => {
 
 const registerNewUser = () => {
 
-    alert("Wyczyszczenie section i utworzenie panelu nowego uzytkownika");
+  section.innerHTML = "";
 
+  if(document.getElementsByClassName("register-div").length==0){
+
+    let div = document.createElement("div");
+    div.setAttribute("class","register-div");
+    section.appendChild(div);
+
+    let h2 = document.createElement('h2');
+    h2.setAttribute('class', 'register-h2');
+    h2.innerText = 'Create a new ';
+    div.appendChild(h2);
+
+    let form = document.createElement("form");
+    form.setAttribute("class","form-floating mb-3 register-form");
+    form.method = "POST";
+    form.action = "script.php";
+    div.appendChild(form);
+
+    let divMail = document.createElement("div");
+    divMail.setAttribute("class","form-floating mb-3 mail-login");
+    form.appendChild(divMail);
+
+    let mailInput = document.createElement("input");
+    mailInput.type = "email";
+    mailInput.setAttribute("class","form-control");
+    mailInput.setAttribute("id","floatingRegisterMail");
+    mailInput.placeholder = "name@example.com";
+    mailInput.name = "mail-register";
+    mailInput.setAttribute("oninput","checkRegisterForm()");
+    
+
+    let mailLabel = document.createElement("label");
+    mailLabel.setAttribute("for","floatingRegisterMail");
+    mailLabel.innerText = "Register: email";
+
+    divMail.appendChild(mailInput);
+    divMail.appendChild(mailLabel);
+    //-------
+
+    let divPassword = document.createElement("div");
+    divPassword.setAttribute("class","form-floating mb-3 password-login");
+    form.appendChild(divPassword);
+
+    let divPassword2 = document.createElement("div");
+    divPassword2.setAttribute("class","form-floating mb-3 password2-login");
+    form.appendChild(divPassword2);
+
+    let passwordInput = document.createElement("input");
+    passwordInput.type = "password";
+    passwordInput.setAttribute("class","form-control");
+    passwordInput.setAttribute("id","floatingPassword");
+    passwordInput.placeholder = "password";
+    passwordInput.name = "password-register";
+    passwordInput.setAttribute("oninput","checkRegisterForm()");
+    
+
+    let passwordInput2 = document.createElement("input");
+    passwordInput2.type = "password";
+    passwordInput2.setAttribute("class","form-control");
+    passwordInput2.setAttribute("id","floatingPassword2");
+    passwordInput2.placeholder = "password";
+    passwordInput2.name = "password2-register";
+    passwordInput2.setAttribute("oninput","checkRegisterForm()");
+    
+    
+    let passwordLabel = document.createElement("label");
+    passwordLabel.setAttribute("for","floatingPassword");
+    passwordLabel.setAttribute("class","registerLabels");
+    passwordLabel.innerText = "Register: password";
+
+    let passwordLabel2 = document.createElement("label");
+    passwordLabel2.setAttribute("for","floatingPassword2");
+    passwordLabel2.setAttribute("class","registerLabels");
+    passwordLabel2.innerText = "Please repeat here your password";
+
+    divPassword.appendChild(passwordInput);
+    divPassword.appendChild(passwordLabel);
+    divPassword2.appendChild(passwordInput2);
+    divPassword2.appendChild(passwordLabel2);
+
+    let submitButton = document.createElement('input');
+    submitButton.type ="submit";
+    submitButton.setAttribute('class', 'btn btn-primary w-50 register-btns sbmt');
+    submitButton.value = 'Sign up';
+    submitButton.setAttribute('id','submitRegister');
+    submitButton.disabled = true;
+
+    //.setAttribute("oninput","checkContactForm()"); do register i login
+    //w login tylko na log in button
+
+    let divButtons = document.createElement("div");
+    divButtons.setAttribute("class","form-floating mb-3 buttons-register");
+    form.appendChild(divButtons);
+
+    divButtons.appendChild(submitButton);
+
+    }
 
 }
 
 
 
+//guest może przeglądać wiadomości wysłane z powiązanym mailem i sprawdzać
+//czy odczytane
+
+//admin może przeglądać wiadomości + przeglądać statystyki
+//nie moze "wyswietlac wiadomosci"
+
+//owner moze wyswietlac wiadomosci + statystyki + zarządzać projektami
+
+const checkRegisterForm = () => {
+
+ 
+
+  let login = document.getElementById("floatingRegisterMail").value;
+  let password1 = document.getElementById("floatingPassword").value;
+  let password2 = document.getElementById("floatingPassword2").value;
+  let submit = document.getElementById("submitRegister");
+
+  submit.disabled = true;
 
 
+  // if(mail.length>0 && textAreaContent.length>0 && mail.includes("@") && mail.includes(".") && !(mail.includes(';') ||mail.includes('"') || mail.includes("'")) && !(textAreaContent.includes(';') || textAreaContent.includes('"') || textAreaContent.includes("'"))){
 
+  //sprawdzenie czy mail jest mailem i czy nie zawiera niedozwolonych znaków
+  //sprawdzenie czy hasla nie zawierają niedozwolonych znaków
+  //sprawdzenie czy hasla są takie same
+  //jeżeli tak to odblokowanie przycisku register
+
+}
+
+const checkLoginForm = () => {
+
+  document.getElementById("submitLogin").disabled = true;
+
+}
 
 
 

@@ -1,8 +1,5 @@
 <?php 
 
-
-
-
 $conn = new mysqli('localhost', 'root', '', 'portfolioproject');
 
 if ($conn -> connect_errno) {
@@ -15,22 +12,28 @@ if(isset($_POST["mail-login"]) && $_POST["password-login"]){
     $login = $_POST["mail-login"];
     $password = $_POST["password-login"];
 
-    $password = password_hash($password, PASSWORD_DEFAULT);
+    //tutaj przy rejestracji 
+    //$password = password_hash($password, PASSWORD_DEFAULT);
+
+        //$sql = "INSERT INTO `users` (`user_Id`, `privileges_Id`, `login`, `password`) VALUES (NULL, 'NULL', '$login', '$password')";
+        //$conn->query($sql);
+    //---------------------------------------------
+
+        $sql = "SELECT password from users where login = '$login'";
     
-    
-        $sql = "INSERT INTO `users` (`user_Id`, `privileges_Id`, `login`, `password`) VALUES (NULL, 'NULL', '$login', '$password')";
+        $result = $conn->query($sql);
+        $row = mysqli_fetch_assoc($result);
+        $DBpassword = $row['password'];
         
-        if ($conn->query($sql) === TRUE) {
-            //alert o zalogowaniu\
-            echo "dziala";
-            echo $sql;
-        } 
-        else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
-            ////alert o nieudanej próbie logowania
+        if(password_verify($password, $DBpassword)){
+            echo "zalogowano";
+            //przejscie do strony w react + radix ui gdzie będzie można tylko się dostać po zalogowaniu
+            //require_once("admin.php");
+            
+        }else{
+            echo "nie zalogowano";
+            
         }
-        
-        //
 }
 
 if(isset($_POST["contactEmail"]) && $_POST["contactTextArea"]){
@@ -40,8 +43,9 @@ if(isset($_POST["contactEmail"]) && $_POST["contactTextArea"]){
     
         $sql = "INSERT INTO `messages` (`Id_wiadomosci`, `email_nadawcy`, `tresc`, `data_utworzenia`, `czy_wyswietlono`) VALUES (NULL, '$mail', '$content', current_timestamp(), '0')";
         if ($conn->query($sql) === TRUE) {
-            echo "dziala";
+            //echo "dziala";
             //alert o pomyślnym wysłaniu wiadomości
+            require_once("index.php");
         } 
         else {
             echo "Error: " . $sql . "<br>" . $conn->error;
@@ -52,5 +56,5 @@ if(isset($_POST["contactEmail"]) && $_POST["contactTextArea"]){
 
 
 
-//require_once("index.php");
+
 ?>

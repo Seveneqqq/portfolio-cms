@@ -242,7 +242,7 @@ a{
     color:white;
 }
 
-.login-div{
+.login-div, .register-div{
     width:30vw;
     margin-left: auto;
     margin-right: auto;
@@ -262,25 +262,43 @@ a{
     color:rgb(21, 79, 253);
     text-decoration: underline;
 }
-.login-form{ 
+.login-form, .register-form{ 
     width: 30vw;
     margin-top:5vh;
 }
-.mail-login, .password-login{
+.mail-login, .password-login, .password-login2{
     padding-bottom: 2vh;
 }
-.buttons-login{
+.buttons-login, .buttons-register{
     margin-top: 5vh;
     display: flex;
     width:100%;
     gap:20px;
 }
-.login-btns{
+.login-btns, .register-btns{
     background-color:rgb(21, 79, 253);    
 }
 .captcha-div{
     height: 10vh;
     border:2px solid green;    
 }
-
-
+.register-h2{
+    text-align: center;
+    padding-top: 15vh;
+    font-size: 2.2rem;
+    font-family: 'Black Ops One';
+    color: white;
+}
+.register-h2::after{
+    content: "account";
+    letter-spacing: 5px;
+    color:rgb(21, 79, 253);
+    text-decoration: underline;
+}
+#floatingPassword2{
+    margin-top: 2vh;
+}
+.buttons-register{
+    align-items: center;
+    justify-content: center;
+}
