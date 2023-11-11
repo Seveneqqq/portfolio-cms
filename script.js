@@ -1,13 +1,32 @@
 
-//var actualPosition = document.location.href;
-
 var section = document.getElementsByTagName("section")[0];
+
+window.onload = function () {
+  
+  var currentURL = window.location.href;
+
+  if(currentURL == 'http://localhost/project/#login'){
+    window.location.href = 'http://localhost/project/#login';
+    loginTab();
+  }
+  else if(currentURL == 'http://localhost/project/#contact'){
+    window.location.href = 'http://localhost/project/#contact';
+    contactTab();
+  }
+  else if(currentURL == 'http://localhost/project/#register'){
+    window.location.href = 'http://localhost/project/#register';
+    registerNewUser();
+  }
+  else{
+    window.location.href = 'http://localhost/project/#home';
+    portfolioTab();
+  }
+
+};
+
 
 const changeTab = (nameTab) => {
     document.getElementsByTagName("h1")[0].innerText = nameTab;  
-    //console.log(nameTab);
-
-    //actualPosition = document.location.href;
 
     switch (nameTab) {
         case "Portfolio":
@@ -31,30 +50,33 @@ const changeTab = (nameTab) => {
 
 }
 
-const portfolioTab = () => {    
-section.innerHTML = "";
-if(document.getElementsByClassName("home-div").length==0){
-let div = document.createElement("div");
-div.setAttribute("class","home-div");
-section.appendChild(div);
+const portfolioTab = () => {
 
-let h2 = document.createElement("h2");
-h2.setAttribute("class","home-h2");
-div.appendChild(h2);
+  section.innerHTML = "";
 
-let par = document.createElement("p");
-par.setAttribute("class","home-p");
-div.appendChild(par);
+    if(document.getElementsByClassName("home-div").length==0){
 
-let img = document.createElement("img");
-img.setAttribute("class","hacker");
-img.src = "https://raw.githubusercontent.com/AsmrProg-YT/Personal-Portfolios/master/Personal%20Portfolio%20%2301/images/header.png";
-section.appendChild(img);
+      let div = document.createElement("div");
+      div.setAttribute("class","home-div");
+      section.appendChild(div);
 
-h2.innerText = "Hi, I'am ";
-let txt = "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi quasi eaque molestiae dolore hic aperiam corporis ab distinctio iusto ratione doloremque, illum alias, magni non iure consequuntur molestias vitae fuga.";
-  
-par.innerText = txt; 
+      let h2 = document.createElement("h2");
+      h2.setAttribute("class","home-h2");
+      div.appendChild(h2);
+
+      let par = document.createElement("p");
+      par.setAttribute("class","home-p");
+      div.appendChild(par);
+
+      let img = document.createElement("img");
+      img.setAttribute("class","hacker");
+      img.src = "https://raw.githubusercontent.com/AsmrProg-YT/Personal-Portfolios/master/Personal%20Portfolio%20%2301/images/header.png";
+      section.appendChild(img);
+
+      h2.innerText = "Hi, I'am ";
+      let txt = "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi quasi eaque molestiae dolore hic aperiam corporis ab distinctio iusto ratione doloremque, illum alias, magni non iure consequuntur molestias vitae fuga.";
+        
+      par.innerText = txt; 
     
   }
 }
@@ -107,7 +129,6 @@ const contactTab = () => {
 
     section.innerHTML = "";
 
-
     if(document.getElementsByClassName("contact-div").length==0){
 
 let h2 = document.createElement('h2');
@@ -121,7 +142,6 @@ let formContact = document.createElement("form");
 formContact.method = "POST";
 formContact.action = "script.php";
 divContact.appendChild(formContact);
-
 let divMail = document.createElement('div'); 
 divMail.setAttribute('class', 'mb-4 form-floating');
 
@@ -164,8 +184,6 @@ sendButton.setAttribute('class', 'btn btn-primary');
 sendButton.setAttribute('id', 'contactSubmit'); 
 sendButton.disabled = true;
 
-
-
 section.appendChild(h2);
 section.appendChild(divContact);
 formContact.appendChild(divMail);
@@ -188,7 +206,6 @@ const checkContactForm = () => {
     }
 
 }
-
 
 const loginTab = () => {
     section.innerHTML = "";
@@ -229,7 +246,6 @@ const loginTab = () => {
 
       divMail.appendChild(mailInput);
       divMail.appendChild(mailLabel);
-      //-------
 
       let divPassword = document.createElement("div");
       divPassword.setAttribute("class","form-floating mb-3 password-login");
@@ -258,8 +274,8 @@ const loginTab = () => {
       submitButton.setAttribute('id','submitLogin');
       submitButton.disabled = true;
 
-      let captchaDiv = document.createElement("div");
-      captchaDiv.setAttribute("class","form-floating mb-3 captcha-div");
+      //let captchaDiv = document.createElement("div");
+      //captchaDiv.setAttribute("class","form-floating mb-3 captcha-div");
       //form.appendChild(captchaDiv);
 
       let divButtons = document.createElement("div");
@@ -273,15 +289,6 @@ const loginTab = () => {
       signinButton.setAttribute('onclick', 'registerNewUser()');
       divButtons.appendChild(submitButton);
       divButtons.appendChild(signinButton);
-      
-
-      //wywolanie funkcji logowania ->
-      //Sprawdzić czy pola nie są puste 
-      //wtedy puscic dalej
-      //jeżeli nie to wyświetlić komunikat pod spodem przycisków,
-      //Sprawdzić czy nie ma cudzyslowiow itp zadnych znakow specjalnych
-      //potem wywolać ajaxem funkcje php która pobierze dane
-      //
   
       }
       
@@ -290,6 +297,7 @@ const loginTab = () => {
 const registerNewUser = () => {
 
   section.innerHTML = "";
+  window.location.href = 'http://localhost/project/#register';
 
   if(document.getElementsByClassName("register-div").length==0){
 
@@ -320,14 +328,12 @@ const registerNewUser = () => {
     mailInput.name = "mail-register";
     mailInput.setAttribute("oninput","checkRegisterForm()");
     
-
     let mailLabel = document.createElement("label");
     mailLabel.setAttribute("for","floatingRegisterMail");
     mailLabel.innerText = "Register: email";
 
     divMail.appendChild(mailInput);
     divMail.appendChild(mailLabel);
-    //-------
 
     let divPassword = document.createElement("div");
     divPassword.setAttribute("class","form-floating mb-3 password-login");
@@ -359,11 +365,13 @@ const registerNewUser = () => {
     passwordLabel.setAttribute("for","floatingPassword");
     passwordLabel.setAttribute("class","registerLabels");
     passwordLabel.innerText = "Register: password";
+    passwordLabel.setAttribute('id','labelRegister');
 
     let passwordLabel2 = document.createElement("label");
     passwordLabel2.setAttribute("for","floatingPassword2");
     passwordLabel2.setAttribute("class","registerLabels");
     passwordLabel2.innerText = "Please repeat here your password";
+    passwordLabel2.setAttribute('id','labelRegister2');
 
     divPassword.appendChild(passwordInput);
     divPassword.appendChild(passwordLabel);
@@ -377,20 +385,23 @@ const registerNewUser = () => {
     submitButton.setAttribute('id','submitRegister');
     submitButton.disabled = true;
 
-    //.setAttribute("oninput","checkContactForm()"); do register i login
-    //w login tylko na log in button
+    let loginButton = document.createElement('input');
+    loginButton.type ="button";
+    loginButton.setAttribute('class', 'btn btn-primary w-50 login-btns sbmt');
+    loginButton.value = 'Login';
+    loginButton.setAttribute('id','buttonLogin');
+    loginButton.setAttribute('onclick','loginTab()');
 
     let divButtons = document.createElement("div");
     divButtons.setAttribute("class","form-floating mb-3 buttons-register");
     form.appendChild(divButtons);
 
     divButtons.appendChild(submitButton);
+    divButtons.appendChild(loginButton);
 
     }
 
 }
-
-
 
 //guest może przeglądać wiadomości wysłane z powiązanym mailem i sprawdzać
 //czy odczytane
@@ -402,8 +413,6 @@ const registerNewUser = () => {
 
 const checkRegisterForm = () => {
 
- 
-
   let login = document.getElementById("floatingRegisterMail").value;
   let password1 = document.getElementById("floatingPassword").value;
   let password2 = document.getElementById("floatingPassword2").value;
@@ -411,22 +420,38 @@ const checkRegisterForm = () => {
 
   submit.disabled = true;
 
+   if(login.length>0 && password1.length>0 && password2.length>0 && login.includes("@") && login.includes(".") && !(login.includes(';') || login.includes('"') || login.includes("'")) && !(password1.includes(';') || password1.includes('"') || password1.includes("'") || password2.includes(';') || password2.includes('"') || password2.includes("'"))){
 
-  // if(mail.length>0 && textAreaContent.length>0 && mail.includes("@") && mail.includes(".") && !(mail.includes(';') ||mail.includes('"') || mail.includes("'")) && !(textAreaContent.includes(';') || textAreaContent.includes('"') || textAreaContent.includes("'"))){
-
-  //sprawdzenie czy mail jest mailem i czy nie zawiera niedozwolonych znaków
-  //sprawdzenie czy hasla nie zawierają niedozwolonych znaków
-  //sprawdzenie czy hasla są takie same
-  //jeżeli tak to odblokowanie przycisku register
-
+      if(password1 != password2){
+          document.getElementById("labelRegister").innerText = "Password are not the same ❌";
+          document.getElementById("labelRegister2").innerText = "Password are not the same ❌";
+          document.getElementById("labelRegister").color = "red";
+      }
+      else{
+        document.getElementById("labelRegister").innerText = "Register: password ✔️";
+        document.getElementById("labelRegister2").innerText = "Register: password ✔️";
+        submit.disabled = false;
+      }
+   }
 }
 
 const checkLoginForm = () => {
 
-  document.getElementById("submitLogin").disabled = true;
+  let login = document.getElementById("floatingMail").value;
+  let password = document.getElementById("floatingPassword").value;
+
+  if(login.length>0 && password.length>0 && login.includes("@") && login.includes(".") && !(login.includes(';') || login.includes('"') || login.includes("'")) && !(password.includes(';') || password.includes('"') || password.includes("'"))){
+  
+    document.getElementById("submitLogin").disabled = false;
+
+  }
+  else{
+
+    document.getElementById("submitLogin").disabled = true;
+
+  }
 
 }
-
 
 
 

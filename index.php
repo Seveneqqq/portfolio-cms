@@ -61,11 +61,7 @@
         
     </script>
 
-    <?php 
-
-        require_once("index.php");
-
-    ?>
+   
 
 </body>
 </html>
